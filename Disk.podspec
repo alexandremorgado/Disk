@@ -1,1 +1,0 @@
-.gitroyalty/Disk.podspec

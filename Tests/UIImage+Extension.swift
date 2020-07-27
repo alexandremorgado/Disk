@@ -6,6 +6,8 @@
 //  Copyright © 2017 Saoud Rizwan. All rights reserved.
 //
 
+#if !os(macOS)
+
 import UIKit
 
 // UIImage's current Equatable implementation is buggy, this is a simply workaround to compare images' Data
@@ -19,3 +21,5 @@ extension UIImage {
         }
     }
 }
+
+#endif

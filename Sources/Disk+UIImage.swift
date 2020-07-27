@@ -20,6 +20,7 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
+#if !os(macOS)
 import Foundation
 import UIKit
 
@@ -130,4 +131,4 @@ public extension Disk {
     }
 }
 
-
+#endif
