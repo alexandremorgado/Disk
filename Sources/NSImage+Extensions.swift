@@ -11,6 +11,17 @@ import Cocoa
 // Typealias UIImage to NSImage
 public typealias UIImage = NSImage
 
+extension NSBitmapImageRep {
+    var png: Data? { representation(using: .png, properties: [:]) }
+    var jpeg: Data? { representation(using: .jpeg, properties: [:]) }
+}
+extension Data {
+    var bitmap: NSBitmapImageRep? { NSBitmapImageRep(data: self) }
+}
+extension NSImage {
+    
+}
+
 // Add APIs that UIImage has but NSImage doesn't.
 public extension NSImage {
     var cgImage: CGImage? {
@@ -20,9 +31,13 @@ public extension NSImage {
                        context: nil,
                        hints: nil)
     }
-
-//    convenience init?(named name: String) {
-//        self.init(named: Name(name))
-//    }
+    
+    func pngData() -> Data? {
+        return tiffRepresentation?.bitmap?.png
+    }
+    func jpegData(compressionQuality: Int) -> Data? {
+        return tiffRepresentation?.bitmap?.jpeg
+    }
+    
 }
 #endif

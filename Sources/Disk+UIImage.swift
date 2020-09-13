@@ -20,9 +20,12 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
-#if !os(macOS)
 import Foundation
+#if !os(macOS)
 import UIKit
+#else
+import AppKit
+#endif
 
 public extension Disk {
     /// Save image to disk
@@ -37,11 +40,7 @@ public extension Disk {
             var imageData: Data
             if path.suffix(4).lowercased() == ".png" {
                 let pngData: Data?
-                #if swift(>=4.2)
                 pngData = value.pngData()
-                #else
-                pngData = UIImagePNGRepresentation(value)
-                #endif
                 if let data = pngData {
                     imageData = data
                 } else {
@@ -54,11 +53,7 @@ public extension Disk {
                 }
             } else if path.suffix(4).lowercased() == ".jpg" || path.suffix(5).lowercased() == ".jpeg" {
                 let jpegData: Data?
-                #if swift(>=4.2)
                 jpegData = value.jpegData(compressionQuality: 1)
-                #else
-                jpegData = UIImageJPEGRepresentation(value, 1)
-                #endif
                 if let data = jpegData {
                     imageData = data
                 } else {
@@ -130,5 +125,3 @@ public extension Disk {
         }
     }
 }
-
-#endif

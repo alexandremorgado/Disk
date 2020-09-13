@@ -20,9 +20,12 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
-#if !os(macOS)
 import Foundation
+#if !os(macOS)
 import UIKit
+#else
+import AppKit
+#endif
 
 public extension Disk {
     /// Save an array of images to disk
@@ -195,5 +198,3 @@ public extension Disk {
     }
 
 }
-
-#endif
